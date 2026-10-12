@@ -88,7 +88,7 @@ h2{font-family:var(--font-event);font-size:clamp(34px,4vw,48px);font-weight:400;
 /* ---------- About ---------- */
 .facts-band{background:linear-gradient(to bottom,transparent 72px,#000 72px)}
 .about{background:#000;color:#fff;padding:72px 0 88px}
-.about-text{font-family:var(--font-event);font-weight:400;font-size:clamp(22px,2.3vw,30px);line-height:1.35;max-width:980px;margin:0;color:#fff}
+.about-text{font-family:var(--font-event);font-weight:400;font-size:clamp(20px,2vw,26px);line-height:1.4;max-width:900px;margin:0;color:#fff}
 
 /* ---------- Agenda ---------- */
 .agenda{background:#e3ddd7;padding:80px 0}
@@ -115,13 +115,14 @@ h2{font-family:var(--font-event);font-size:clamp(34px,4vw,48px);font-weight:400;
 
 /* ---------- Speakers ---------- */
 .speakers{padding:80px 0}
-.speaker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px 22px;margin-top:32px}
+.speaker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 22px;margin-top:32px}
 .speaker{background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
 .speaker .ph{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--accent-tint)}
 .speaker img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .speaker:hover img{transform:scale(1.04)}
 .speaker b{display:block;margin-top:12px;font-size:16px;font-weight:600}
 .speaker span{display:block;font-size:13px;color:var(--ink-2);line-height:1.4}
+@media (max-width:900px){.speaker-grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:600px){.speaker-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- Venue ---------- */
@@ -382,21 +383,36 @@ const EVENT = {
   },
 
   // --- Managed in MPA (speakers & agenda) ---
+  // Dummy speakers: names, titles and organisations are fictional placeholders
   speakers: {
-    rowan:      { name: 'Marc Rowan',       title: 'CEO, Apollo', photo: 'https://content.marketpartner.app/Avatar/dd461651e5d4822112b7ef7dfad8d8f0.jpeg' },
-    bittencourt:{ name: 'Rob Bittencourt',  title: 'Partner, Head of Thematic Investing, Apollo', photo: 'https://content.marketpartner.app/Avatar/44e064351103dc7f59740af6d1a033c1.jpeg' },
-    zelter:     { name: 'Jim Zelter',       title: 'President, Apollo', photo: 'https://content.marketpartner.app/Avatar/4c652721713988da2c80d5ba610af675.jpeg' }
+    calloway:  { name: 'James Calloway',    title: 'Partner, Head of Client Solutions, Apollo', photo: 'images/speakers/james-calloway.jpg' },
+    whitfield: { name: 'Diane Whitfield',   title: 'Partner, Head of Retirement Services, Apollo', photo: 'images/speakers/diane-whitfield.jpg' },
+    ashford:   { name: 'Thomas Ashford',    title: 'Partner, Chief Investment Strategist, Apollo', photo: 'images/speakers/thomas-ashford.jpg' },
+    morimoto:  { name: 'Kenji Morimoto',    title: 'Chief Investment Officer, Harborline Capital', photo: 'images/speakers/kenji-morimoto.jpg' },
+    kowalski:  { name: 'Margaret Kowalski', title: 'Chief Executive Officer, Summit Ridge Insurance', photo: 'images/speakers/margaret-kowalski.jpg' },
+    lin:       { name: 'Grace Lin',         title: 'Global Head of Investment Strategy, Meridian Trust Bank', photo: 'images/speakers/grace-lin.jpg' },
+    mehta:     { name: 'Rajiv Mehta',       title: 'Head of Alternatives, Crestview Pension Partners', photo: 'images/speakers/rajiv-mehta.jpg' },
+    navarro:   { name: 'Elena Navarro',     title: 'Partner, Co-Head of Private Credit, Apollo', photo: 'images/speakers/elena-navarro.jpg' },
+    hartmann:  { name: 'Stefan Hartmann',   title: 'Managing Director, Northbridge Asset Management', photo: 'images/speakers/stefan-hartmann.jpg' },
+    reed:      { name: 'Marcus Reed',       title: 'Partner, Head of Infrastructure, Apollo', photo: 'images/speakers/marcus-reed.jpg' },
+    whitcombe: { name: 'Sarah Whitcombe',   title: 'Head of Research, Lakeshore Endowment Partners', photo: 'images/speakers/sarah-whitcombe.jpg' },
+    ellery:    { name: 'Catherine Ellery',  title: 'Partner, Head of Global Wealth, Apollo', photo: 'images/speakers/catherine-ellery.jpg' }
   },
   agenda: [
     { start: '12:00', end: '13:00', type: 'networking', title: 'Registration and lunch' },
-    { start: '13:00', end: '13:05', type: 'main', title: 'Welcome remarks', speakers: ['rowan'],
-      desc: 'Session description to follow. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.' },
-    { start: '13:05', end: '14:00', type: 'main', title: 'Keynote presentation', speakers: ['bittencourt'],
-      desc: 'Session description to follow. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.' },
-    { start: '14:00', end: '15:00', type: 'main', title: 'Executive panel',
-      desc: 'There will be time at the end of this panel for Q&A — please submit your questions for the panel.' },
-    { start: '16:00', end: '16:30', type: 'main', title: 'Closing remarks', speakers: ['zelter'] },
-    { start: '16:30', end: '18:30', type: 'networking', title: 'Networking reception' }
+    { start: '13:00', end: '13:10', type: 'main', title: 'Welcome remarks', speakers: ['calloway'],
+      desc: 'An introduction to the afternoon and a look at what\u2019s changed for investors since we last came together.' },
+    { start: '13:10', end: '13:50', type: 'main', title: 'Keynote: Building retirement security at scale', speakers: ['whitfield'],
+      desc: 'How long-dated liabilities, higher rates and an ageing population are reshaping the way capital is raised and deployed, and what that means for investors seeking durable, risk-adjusted returns.' },
+    { start: '13:50', end: '14:50', type: 'main', title: 'Executive panel: Allocating in a higher-for-longer world', speakers: ['morimoto', 'kowalski', 'lin', 'mehta'], moderators: ['ashford'],
+      desc: 'Senior allocators from insurance, banking and pension funds compare notes on portfolio construction, liquidity and where they see the best opportunities across public and private markets. There will be time at the end for Q&A.' },
+    { start: '14:50', end: '15:30', type: 'main', title: 'Fireside chat: The next chapter for private credit', speakers: ['navarro', 'hartmann'],
+      desc: 'A candid conversation on origination, underwriting discipline and the growing role of private credit in investment-grade portfolios.' },
+    { start: '15:30', end: '16:00', type: 'networking', title: 'Coffee break' },
+    { start: '16:00', end: '16:35', type: 'main', title: 'In conversation: Infrastructure and the energy transition', speakers: ['reed', 'whitcombe'],
+      desc: 'Where the capital needs are greatest, from power and digital infrastructure to energy security, and how investors can participate.' },
+    { start: '16:35', end: '16:45', type: 'main', title: 'Closing remarks', speakers: ['ellery'] },
+    { start: '16:45', end: '18:30', type: 'networking', title: 'Networking reception' }
   ]
 };
 
@@ -469,8 +485,9 @@ function personHTML(id){
 }
 function sessionHTML(s){
   const people = s.speakers?.length ? `<div class="people-label">${s.speakers.length > 1 ? 'Speakers' : 'Speaker'}</div>${s.speakers.map(personHTML).join('')}` : '';
+  const mods = s.moderators?.length ? `<div class="people-label">${s.moderators.length > 1 ? 'Moderators' : 'Moderator'}</div>${s.moderators.map(personHTML).join('')}` : '';
   const desc = s.desc ? `<p class="desc">${esc(s.desc)}</p>${s.desc.length > 140 ? '<button class="more" type="button">Read more</button>' : ''}` : '';
-  return `<h3>${esc(s.title)}</h3>${desc}${people}`;
+  return `<h3>${esc(s.title)}</h3>${desc}${people}${mods}`;
 }
 function renderAgenda(){
   $('slots').innerHTML = EVENT.agenda.map(s => {
@@ -488,7 +505,7 @@ document.addEventListener('click', e => {
 function speakerSessions(id){
   const out = [];
   EVENT.agenda.forEach(s => {
-    if (s.speakers?.includes(id)) out.push({ t: s.title, when: `${fmt24(s.start)} – ${fmt24(s.end)}` });
+    if (s.speakers?.includes(id) || s.moderators?.includes(id)) out.push({ t: s.title, when: `${fmt24(s.start)} – ${fmt24(s.end)}` });
   });
   return out;
 }
