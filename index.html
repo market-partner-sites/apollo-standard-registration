@@ -178,18 +178,8 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
 .m-body .s small{display:block;color:var(--ink-3)}
 .m-close{position:absolute;top:12px;right:12px;background:none;border:0;cursor:pointer;color:var(--ink-3);padding:6px}
 
-/* ---------- Template preview panel (demo only) ---------- */
-.tpl-toggle{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:11px 16px;font:600 13px var(--font);cursor:pointer;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
-.tpl{position:fixed;left:16px;bottom:64px;z-index:60;width:320px;max-width:calc(100% - 32px);max-height:calc(100vh - 100px);overflow:auto;background:#fff;border-radius:var(--radius);box-shadow:0 24px 60px -12px rgba(0,0,0,.4);padding:18px;display:none;font-size:13px}
-.tpl.open{display:block}
-.tpl h4{margin:0 0 4px;font-size:14px}
-.tpl p{margin:0 0 14px;color:var(--ink-2)}
-.tpl label{display:block;font-weight:600;margin:12px 0 5px}
-.tpl input,.tpl select{width:100%;font:13px var(--font);padding:8px 10px;border:1px solid var(--border);border-radius:6px}
-.tpl .src{font-weight:400;color:var(--ink-3);font-size:11px;margin-left:4px}
 /* Mobile: half the vertical spacing between sections */
 @media (max-width:760px){.about{padding:36px 0 44px}.agenda,.speakers{padding:40px 0}.register{padding:44px 0}}
-@media print{.tpl,.tpl-toggle{display:none}}
 </style>
 </head>
 <body>
@@ -302,18 +292,6 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
 
 <dialog id="spkModal"><button class="m-close" aria-label="Close" onclick="this.closest('dialog').close()">✕</button><div id="spkModalBody"></div></dialog>
 
-<!-- Demo-only control panel: shows how Airtable fields drive the page -->
-<button class="tpl-toggle" id="tplToggle" type="button">⚙ Template preview</button>
-<div class="tpl" id="tpl" aria-label="Template preview">
-  <h4>Airtable → MPA preview</h4>
-  <p>Change the fields Apollo would edit in Airtable. The page, including the event lockup, rebuilds from them.</p>
-  <label>Event title <span class="src">Airtable</span></label><input id="tTitle">
-  <label>Registration status <span class="src">Airtable / MPA</span></label>
-  <select id="tStatus"><option value="open">Open</option><option value="waitlist">Waitlist (capacity reached)</option><option value="closed">Closed</option><option value="cancelled">Cancelled</option></select>
-  <label>Audience / disclaimer <span class="src">Airtable</span></label>
-  <select id="tAudience"><option value="external">External</option><option value="internal">Internal</option></select>
-  <label>Hero background image URL <span class="src">Template / Airtable</span></label><input id="tBg">
-</div>
 
 <script>
 /* ==========================================================================
@@ -557,11 +535,6 @@ function downloadICS(){
   const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })), download: `${BRAND.name}-${EVENT.title}`.replace(/\s+/g, '-') + '.ics' });
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
-
-/* ---------- Template preview panel ---------- */
-$('tplToggle').onclick = () => $('tpl').classList.toggle('open');
-const bind = (id, key) => { const el = $(id); el.value = EVENT[key]; el.addEventListener('input', () => { EVENT[key] = el.value; renderAll(); }); };
-bind('tTitle', 'title'); bind('tStatus', 'registrationStatus'); bind('tAudience', 'audience'); bind('tBg', 'heroImage');
 
 function renderAll(){ renderHero(); renderFacts(); renderRegistration(); tick(); }
 document.addEventListener('error', e => { if (e.target.tagName === 'IMG' && !e.target.closest('.brand')) e.target.style.visibility = 'hidden'; }, true);
