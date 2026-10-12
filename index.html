@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apollo Investor Lunch — Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* Graphik is a licensed Commercial Type font. For the live site, self-host the licensed webfont files, e.g.:
+@font-face{font-family:'Graphik';src:url('fonts/Graphik-Regular-Web.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Graphik';src:url('fonts/Graphik-Medium-Web.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Graphik';src:url('fonts/Graphik-Semibold-Web.woff2') format('woff2');font-weight:600;font-display:swap}
+*/
+/* ==========================================================================
+   TEMPLATE THEME — set once per client (Apollo), not per event
+   ========================================================================== */
+:root{
+  --font-event:'Adobe Garamond Pro','adobe-garamond-pro','EB Garamond',Garamond,Georgia,serif; /* Adobe Fonts kit in production; EB Garamond fallback */
+  --font:'Graphik','Graphik Web','Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; /* Graphik (licensed) in production; Inter fallback */
+  --bg:#f7f7f4; --surface:#fff; --surface-tint:#eef4f1;
+  --border:#e3e4df; --ink:#11171a; --ink-2:#4d5559; --ink-3:#8a9196; --ink-inverse:#f7f7f4;
+  --accent:#006350; --accent-dark:#00473a; --accent-bright:#45d1a4; --accent-tint:#dcefe8;
+  --hero-ink:#06110e; --brand-green:#007b63;
+  --radius:10px; --shadow:0 18px 40px -18px rgba(6,17,14,.35);
+  --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+h2{font-family:var(--font-event);font-size:clamp(34px,4vw,48px);font-weight:400;letter-spacing:0;line-height:1.1;margin:8px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:6px;font:600 14px/1 var(--font);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,color .15s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff;background:transparent}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:40;background:rgba(6,17,14,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;text-decoration:none;color:#fff}
+.brand img{height:16px;width:auto}
+.brand .wordmark{font-weight:500;letter-spacing:.32em;font-size:15px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:rgba(255,255,255,.78);text-decoration:none;font-size:16px;font-weight:500}
+.nav-links a:hover{color:#fff}
+.nav-links .btn{padding:11px 18px;color:#fff;font-size:16px}
+@media (max-width:720px){.nav-links a:not(.btn){display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;color:#fff;background:#003d31;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center right}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,52,42,.95) 0%,rgba(0,92,74,.78) 45%,rgba(0,123,99,.35) 100%),linear-gradient(0deg,rgba(0,52,42,.55),rgba(0,52,42,0) 45%)}
+.hero .container{position:relative;padding-top:96px;padding-bottom:150px}
+.hero .eyebrow{color:var(--accent-bright)}
+
+/* Event lockup — generated from the event title, no logo upload */
+.lockup{margin:22px 0 22px;max-width:760px}
+.lockup-kicker{display:block;font-size:clamp(13px,1.3vw,16px);font-weight:500;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-bottom:14px}
+.lockup-kicker img{height:clamp(20px,2.2vw,26px);width:auto}
+.lockup-title{display:block;font-family:var(--font-event);font-size:clamp(50px,7.6vw,92px);font-weight:400;line-height:1;letter-spacing:-.01em}
+.lockup-title .line2{font-style:italic}
+.hero-lead{max-width:540px;font-size:18px;color:rgba(255,255,255,.82);margin:0 0 30px;font-weight:300}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-primary{background:#f7f5ee;color:var(--accent-dark)}
+.hero .btn-primary:hover{background:#fff}
+
+/* Key facts strip — overlaps hero */
+.facts{position:relative;z-index:5;margin-top:-72px}
+.facts-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(3,1fr)}
+.fact{padding:22px 24px;display:flex;gap:14px;align-items:flex-start;border-left:1px solid var(--border)}
+.fact:first-child{border-left:0}
+.fact svg{flex:none;color:var(--accent);margin-top:3px}
+.fact-label{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+.fact-value{font-weight:600;font-size:15px;line-height:1.3;margin-top:2px}
+.fact-sub{font-size:13px;color:var(--ink-2);margin-top:2px}
+.countdown{display:flex;gap:16px;margin-top:4px}
+.countdown b{display:block;font-size:22px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.countdown span{font-size:11px;color:var(--ink-3)}
+@media (max-width:760px){.facts-card{grid-template-columns:1fr}.fact{border-left:0}.fact+.fact{border-top:1px solid var(--border)}}
+
+/* ---------- About ---------- */
+.facts-band{background:linear-gradient(to bottom,transparent 72px,var(--brand-green) 72px)}
+.about{background:var(--brand-green);color:#fff;padding:72px 0 88px}
+.about .container{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start}
+.about-heading{font-family:var(--font-event);font-weight:400;font-size:clamp(30px,3vw,40px);line-height:1.2;letter-spacing:0;margin:0 0 36px}
+.about-right p{font-family:var(--font-event);font-size:clamp(21px,1.9vw,25px);line-height:1.4;margin:0 0 26px;color:#fff}
+.about-right p:last-child{margin-bottom:0}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-flex;align-items:center;padding:9px 18px;border-radius:999px;background:#f7f5ee;color:var(--ink);border:1px solid #f7f5ee;font:500 15px/1.2 var(--font);text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.pill:hover{background:transparent;color:#fff}
+@media (max-width:860px){.about .container{grid-template-columns:1fr;gap:36px}.about-heading{margin-bottom:24px}}
+
+/* ---------- Agenda ---------- */
+.agenda{background:#e3ddd7;padding:80px 0}
+.agenda-head{margin-bottom:28px}
+.slot{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:14px 0;border-top:1px solid rgba(0,0,0,.06)}
+.slot:first-child{border-top:0}
+.slot-time{font-size:14px;color:var(--ink-2);padding-top:18px;font-variant-numeric:tabular-nums}
+.slot-time small{display:block;color:var(--ink-3)}
+.session{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
+.session.plain{background:transparent;border:0;padding:16px 0 0}
+.session.plain h3{margin:0}
+.session.plain h3{font-weight:500;color:var(--ink-2)}
+.session h3{font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.3}
+.session p{margin:0;color:var(--ink-2);font-size:14px}
+.session .desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.session .desc.open{-webkit-line-clamp:unset}
+.more{background:none;border:0;padding:0;margin-top:6px;font:600 13px var(--font);color:var(--accent);cursor:pointer}
+.people-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:16px 0 8px}
+.person{display:flex;align-items:center;gap:12px;padding:5px 0;background:none;border:0;font:inherit;text-align:left;cursor:pointer;color:inherit}
+.person img{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--accent-tint)}
+.person b{display:block;color:var(--accent);font-size:14px;font-weight:600}
+.person span{font-size:13px;color:var(--ink-2)}
+@media (max-width:720px){.slot{grid-template-columns:1fr;gap:6px}.slot-time{padding-top:6px}}
+
+/* ---------- Speakers ---------- */
+.speakers{padding:80px 0}
+.speaker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:28px 22px;margin-top:32px}
+.speaker{background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.speaker .ph{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;background:var(--accent-tint)}
+.speaker img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.speaker:hover img{transform:scale(1.04)}
+.speaker b{display:block;margin-top:12px;font-size:16px;font-weight:600}
+.speaker span{display:block;font-size:13px;color:var(--ink-2);line-height:1.4}
+@media (max-width:600px){.speaker-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Venue ---------- */
+.venue{background:var(--hero-ink);color:#fff}
+.venue .wrap{display:grid;grid-template-columns:1.1fr 1fr;min-height:420px}
+.venue-img{background:#1b2a26 center/cover}
+.venue-body{padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.venue .eyebrow{color:var(--accent-bright)}
+.venue address{font-style:normal;color:rgba(255,255,255,.8);margin:16px 0 24px;font-size:17px;line-height:1.6}
+.venue p{color:rgba(255,255,255,.7);margin:0 0 28px;max-width:440px}
+@media (max-width:860px){.venue .wrap{grid-template-columns:1fr}.venue-img{min-height:240px}.venue-body{padding:44px 24px}}
+
+/* ---------- Register ---------- */
+.register{padding:88px 0}
+.register .container{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start}
+.reg-intro p{color:var(--ink-2)}
+.reg-summary{margin-top:24px;border-top:1px solid var(--border)}
+.reg-summary div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.reg-summary dt{color:var(--ink-3)}
+.reg-summary dd{margin:0;font-weight:600;text-align:right}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label,.field legend{font-size:13px;font-weight:600}
+.field label .opt{font-weight:400;color:var(--ink-3)}
+.field input,.field select,.field textarea{font:15px var(--font);padding:12px 14px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--ink);width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+.field.err input,.field.err select{border-color:#b3261e}
+.field .msg{font-size:12px;color:#b3261e;display:none}
+.field.err .msg{display:block}
+fieldset.field{border:0;padding:0;margin:0 0 16px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--border);border-radius:6px;font-size:14px;cursor:pointer}
+.check input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--accent);flex:none}
+.field.err .check{border-color:#b3261e}
+.disclaimer{font-size:12.5px;color:var(--ink-2);line-height:1.55;margin:4px 0 20px;padding:14px;background:var(--bg);border-radius:6px}
+.form-card .btn{width:100%;justify-content:center;padding:15px}
+.status-banner{padding:14px 16px;border-radius:6px;font-size:14px;margin-bottom:20px;background:#fdf4e3;color:#7a4b00;display:none}
+.status-banner.show{display:block}
+.success{text-align:center;padding:24px 8px}
+.success .tick{width:56px;height:56px;border-radius:50%;background:var(--accent-tint);color:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.success h3{font-size:22px;margin:0 0 8px}
+.success p{color:var(--ink-2);margin:0 0 22px}
+@media (max-width:860px){.register .container{grid-template-columns:1fr;gap:32px}}
+@media (max-width:520px){.grid2{grid-template-columns:1fr;gap:0}.form-card{padding:22px}}
+
+/* ---------- Footer ---------- */
+footer{background:var(--hero-ink);color:rgba(255,255,255,.65);font-size:13px;padding:36px 0}
+footer .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer a{color:rgba(255,255,255,.8)}
+
+/* ---------- Speaker modal ---------- */
+dialog{border:0;border-radius:var(--radius);padding:0;max-width:560px;width:calc(100% - 32px);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(6,17,14,.6)}
+.m-head{display:flex;gap:20px;padding:28px 28px 20px;align-items:center}
+.m-head img{width:96px;height:96px;border-radius:var(--radius);object-fit:cover}
+.m-head h3{margin:0;font-size:22px}
+.m-head p{margin:4px 0 0;color:var(--ink-2);font-size:14px}
+.m-body{padding:0 28px 28px}
+.m-body .s{border-top:1px solid var(--border);padding:12px 0;font-size:14px}
+.m-body .s small{display:block;color:var(--ink-3)}
+.m-close{position:absolute;top:12px;right:12px;background:none;border:0;cursor:pointer;color:var(--ink-3);padding:6px}
+
+/* ---------- Template preview panel (demo only) ---------- */
+.tpl-toggle{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:11px 16px;font:600 13px var(--font);cursor:pointer;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+.tpl{position:fixed;left:16px;bottom:64px;z-index:60;width:320px;max-width:calc(100% - 32px);max-height:calc(100vh - 100px);overflow:auto;background:#fff;border-radius:var(--radius);box-shadow:0 24px 60px -12px rgba(0,0,0,.4);padding:18px;display:none;font-size:13px}
+.tpl.open{display:block}
+.tpl h4{margin:0 0 4px;font-size:14px}
+.tpl p{margin:0 0 14px;color:var(--ink-2)}
+.tpl label{display:block;font-weight:600;margin:12px 0 5px}
+.tpl input,.tpl select{width:100%;font:13px var(--font);padding:8px 10px;border:1px solid var(--border);border-radius:6px}
+.tpl .src{font-weight:400;color:var(--ink-3);font-size:11px;margin-left:4px}
+@media print{.tpl,.tpl-toggle{display:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="#top" id="brand"></a>
+    <nav class="nav-links">
+      <a href="#agenda">Agenda</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#venue">Venue</a>
+      <a class="btn btn-primary" href="#register">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="container">
+      <div class="eyebrow" id="heroDate"></div>
+      <h1 class="lockup" id="lockup"></h1>
+      <p class="hero-lead" id="heroLead"></p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#register" id="heroCta">Register now</a>
+        <a class="btn btn-ghost" href="#agenda">View the agenda</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts-band">
+  <div class="container facts">
+    <div class="facts-card">
+      <div class="fact">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <div><div class="fact-label">When</div><div class="fact-value" id="factDate"></div><div class="fact-sub" id="factTime"></div></div>
+      </div>
+      <div class="fact">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <div><div class="fact-label">Where</div><div class="fact-value" id="factVenue"></div><div class="fact-sub" id="factCity"></div></div>
+      </div>
+      <div class="fact">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+        <div><div class="fact-label" id="cdLabel">Event starts in</div><div class="countdown" id="countdown"></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <section class="about">
+    <div class="container">
+      <div class="about-left">
+        <h2 class="about-heading" id="aboutHeading"></h2>
+        <div class="pills">
+          <button class="pill" id="icsBtn" type="button">Add to calendar</button>
+          <a class="pill" id="dirLink" target="_blank" rel="noopener">Get directions</a>
+          <a class="pill" id="supportLink">Event support</a>
+        </div>
+      </div>
+      <div class="about-right" id="aboutText"></div>
+    </div>
+  </section>
+
+
+  <section class="agenda" id="agenda">
+    <div class="container">
+      <div class="agenda-head"><h2>Agenda</h2></div>
+      <div id="slots"></div>
+    </div>
+  </section>
+
+  <section class="speakers" id="speakers">
+    <div class="container">
+      <h2>Speakers</h2>
+      <div class="speaker-grid" id="speakerGrid"></div>
+    </div>
+  </section>
+
+  <section class="venue" id="venue">
+    <div class="wrap">
+      <div class="venue-img" id="venueImg" role="img"></div>
+      <div class="venue-body">
+        <div class="eyebrow">Venue</div>
+        <h2 id="venueName"></h2>
+        <address id="venueAddr"></address>
+        <p id="venueDesc"></p>
+        <div><a class="btn btn-ghost" id="venueDir" target="_blank" rel="noopener">Get directions →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="register" id="register">
+    <div class="container">
+      <div class="reg-intro">
+        <div class="eyebrow">Registration</div>
+        <h2 id="regTitle">Reserve your place</h2>
+        <p id="regIntro"></p>
+        <dl class="reg-summary" id="regSummary"></dl>
+      </div>
+      <div class="form-card" id="formCard">
+        <div class="status-banner" id="statusBanner"></div>
+        <form id="regForm" novalidate>
+          <div class="grid2">
+            <div class="field"><label for="fn">First name</label><input id="fn" name="firstName" autocomplete="given-name" required><span class="msg">Please enter your first name</span></div>
+            <div class="field"><label for="ln">Last name</label><input id="ln" name="lastName" autocomplete="family-name" required><span class="msg">Please enter your last name</span></div>
+          </div>
+          <div class="field"><label for="org">Organization</label><input id="org" name="organization" autocomplete="organization" required><span class="msg">Please enter your organization</span></div>
+          <div class="field"><label for="em">Email address</label><input id="em" name="email" type="email" autocomplete="email" required><span class="msg">Please enter a valid email address</span></div>
+          <div class="field">
+            <label for="diet">Dietary requirements <span class="opt">(optional)</span></label>
+            <select id="diet" name="dietary">
+              <option value="">None</option><option>Vegetarian</option><option>Vegan</option><option>Gluten-free</option><option>Halal</option><option>Kosher</option><option value="other">Other (please specify)</option>
+            </select>
+            <textarea id="dietOther" name="dietaryOther" placeholder="Please tell us more" hidden></textarea>
+          </div>
+          <div class="field" id="attendField">
+            <label class="check"><input type="checkbox" id="attend" name="attendance" required><span id="attendText"></span></label>
+            <span class="msg">Please confirm your attendance</span>
+          </div>
+          <div class="disclaimer" id="disclaimer"></div>
+          <button class="btn btn-primary" type="submit" id="submitBtn">Register</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div id="footCopy"></div>
+    <div>Questions? <a id="footSupport"></a></div>
+  </div>
+</footer>
+
+<dialog id="spkModal"><button class="m-close" aria-label="Close" onclick="this.closest('dialog').close()">✕</button><div id="spkModalBody"></div></dialog>
+
+<!-- Demo-only control panel: shows how Airtable fields drive the page -->
+<button class="tpl-toggle" id="tplToggle" type="button">⚙ Template preview</button>
+<div class="tpl" id="tpl" aria-label="Template preview">
+  <h4>Airtable → MPA preview</h4>
+  <p>Change the fields Apollo would edit in Airtable. The page, including the event lockup, rebuilds from them.</p>
+  <label>Event title <span class="src">Airtable</span></label><input id="tTitle">
+  <label>Registration status <span class="src">Airtable / MPA</span></label>
+  <select id="tStatus"><option value="open">Open</option><option value="waitlist">Waitlist (capacity reached)</option><option value="closed">Closed</option><option value="cancelled">Cancelled</option></select>
+  <label>Audience / disclaimer <span class="src">Airtable</span></label>
+  <select id="tAudience"><option value="external">External</option><option value="internal">Internal</option></select>
+  <label>Hero background image URL <span class="src">Template / Airtable</span></label><input id="tBg">
+</div>
+
+<script>
+/* ==========================================================================
+   EVENT DATA
+   In production every field below comes from Apollo's Airtable record via the
+   Airtable → MPA sync. Template-level fields (brand, disclaimers) are set once.
+   ========================================================================== */
+const BRAND = {
+  name: 'Apollo',
+  logo: 'data:image/png;base64,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', // white wordmark (embedded); text fallback used if it fails
+  legalName: 'Apollo Global Management, Inc.',
+  privacyUrl: '#',
+  disclaimers: {
+    external: 'By registering, you agree that Apollo and its event partner Market Partner may process the information above to administer your attendance at this event, in line with Apollo\'s <a href="#">Privacy Policy</a>. Your details will not be used for any other purpose without your consent. Places are subject to confirmation.',
+    internal: 'This event is for Apollo employees and invited guests only. Information provided is used solely to manage attendance and catering, under Apollo\'s internal <a href="#">Data Handling Policy</a>. Please do not forward this registration page.'
+  }
+};
+
+const EVENT = {
+  // --- Airtable fields ---
+  aer: 'AER-2026-0412',
+  title: 'Investor Lunch',
+  tagline: 'An afternoon with Apollo leadership on the opportunities shaping private markets, retirement and wealth.',
+  start: '2026-12-03T12:00:00-05:00',
+  end:   '2026-12-03T18:30:00-05:00',
+  timezoneLabel: 'ET',
+  region: 'Americas',                 // drives region logic in MPA
+  format: 'In person',
+  access: 'By invitation',
+  audience: 'external',               // external | internal → disclaimer variant
+  registrationStatus: 'open',         // open | waitlist | closed | cancelled
+  capacity: 250,
+  salesforceCampaignId: '701Dn000001AbCd', // optional; blank for internal events
+  supportEmail: 'events@apollo.example',
+  heroImage: 'https://content.marketpartner.app/Image/5383a29dfbb153ce4441596314a4e602.png',
+  venue: {
+    name: 'Glasshouse Chelsea',
+    address: ['545 W 25th Street', 'New York, NY 10001'],
+    city: 'New York',
+    image: 'https://content.marketpartner.app/Image/a435fa72a733d9175ba4e44f9a79d8c4.jpeg',
+    description: 'A light-filled event space on the Chelsea waterfront, with views across the Hudson. Lunch, the main programme and the evening reception all take place on the 6th floor.'
+  },
+  about: {
+    lead: 'We provide flexible capital at scale to leading companies around the world, helping institutions and individuals achieve long-term financial goals.',
+    body: [
+      'Across Apollo and Athene, we support millions of retirees in securing lasting financial futures.',
+      'As principal investors, we invest alongside our clients, combining disciplined underwriting with our integrated platform to deliver solutions across market cycles.'
+    ]
+  },
+
+  // --- Managed in MPA (speakers & agenda) ---
+  speakers: {
+    rowan:      { name: 'Marc Rowan',       title: 'CEO, Apollo', photo: 'https://content.marketpartner.app/Avatar/dd461651e5d4822112b7ef7dfad8d8f0.jpeg' },
+    bittencourt:{ name: 'Rob Bittencourt',  title: 'Partner, Head of Thematic Investing, Apollo', photo: 'https://content.marketpartner.app/Avatar/44e064351103dc7f59740af6d1a033c1.jpeg' },
+    zelter:     { name: 'Jim Zelter',       title: 'President, Apollo', photo: 'https://content.marketpartner.app/Avatar/4c652721713988da2c80d5ba610af675.jpeg' }
+  },
+  agenda: [
+    { start: '12:00', end: '13:00', type: 'networking', title: 'Registration and lunch' },
+    { start: '13:00', end: '13:05', type: 'main', title: 'Welcome remarks', speakers: ['rowan'],
+      desc: 'Session description to follow. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.' },
+    { start: '13:05', end: '14:00', type: 'main', title: 'Keynote presentation', speakers: ['bittencourt'],
+      desc: 'Session description to follow. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.' },
+    { start: '14:00', end: '15:00', type: 'main', title: 'Executive panel',
+      desc: 'There will be time at the end of this panel for Q&A — please submit your questions for the panel.' },
+    { start: '16:00', end: '16:30', type: 'main', title: 'Closing remarks', speakers: ['zelter'] },
+    { start: '16:30', end: '18:30', type: 'networking', title: 'Networking reception' }
+  ]
+};
+
+/* ==========================================================================
+   RENDERING — nothing below changes per event
+   ========================================================================== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const startD = () => new Date(EVENT.start), endD = () => new Date(EVENT.end);
+const tzOpts = { timeZone: 'America/New_York' };
+const fmtDate = (d, o) => d.toLocaleDateString('en-US', { ...tzOpts, ...o });
+const fmtTime = d => d.toLocaleTimeString('en-US', { ...tzOpts, hour: 'numeric', minute: '2-digit' });
+const fmt24 = hm => { const [h, m] = hm.split(':').map(Number); return `${(h % 12) || 12}:${String(m).padStart(2,'0')} ${h < 12 ? 'AM' : 'PM'}`; };
+const mapsUrl = () => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent([EVENT.venue.name, ...EVENT.venue.address].join(', '));
+
+function renderBrand(){
+  const b = $('brand');
+  b.innerHTML = `<img src="${BRAND.logo}" alt="${esc(BRAND.name)}">`;
+  b.querySelector('img').onerror = () => { b.innerHTML = `<span class="wordmark">${esc(BRAND.name.toUpperCase())}</span>`; };
+}
+
+/* The event "logo" is typography generated from the title — no image upload */
+function renderLockup(){
+  const words = EVENT.title.trim().split(/\s+/);
+  // Long titles split over two lines, with the second line set lighter
+  let html;
+  if (words.length >= 3) {
+    const cut = Math.ceil(words.length / 2);
+    html = `${esc(words.slice(0, cut).join(' '))}<br><span class="line2">${esc(words.slice(cut).join(' '))}</span>`;
+  } else html = esc(EVENT.title);
+  $('lockup').innerHTML =
+    `<span class="lockup-title">${html}</span>`;
+  document.title = `${BRAND.name} ${EVENT.title} — Register`;
+}
+
+function renderHero(){
+  $('heroBg').style.backgroundImage = EVENT.heroImage
+    ? `url("${EVENT.heroImage}"), radial-gradient(120% 140% at 85% 15%, #00a383 0%, #007b63 35%, #003d31 75%)`
+    : 'radial-gradient(120% 140% at 85% 15%, #00a383 0%, #007b63 35%, #003d31 75%)';
+  const s = startD();
+  $('heroDate').textContent = fmtDate(s, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  $('heroLead').textContent = EVENT.tagline;
+  renderLockup();
+}
+
+function renderFacts(){
+  const s = startD(), e = endD();
+  $('factDate').textContent = fmtDate(s, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  $('factTime').textContent = `${fmtTime(s)} – ${fmtTime(e)} ${EVENT.timezoneLabel}`;
+  $('factVenue').textContent = EVENT.venue.name;
+  $('factCity').textContent = EVENT.venue.city;
+}
+
+function tick(){
+  const diff = startD() - new Date();
+  if (EVENT.registrationStatus === 'cancelled') { $('cdLabel').textContent = 'Status'; $('countdown').innerHTML = '<div class="fact-value">Event cancelled</div>'; return; }
+  if (diff <= 0) { $('cdLabel').textContent = 'Status'; $('countdown').innerHTML = `<div class="fact-value">${endD() > new Date() ? 'Happening now' : 'Event has ended'}</div>`; return; }
+  const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff / 6e4) % 60;
+  $('cdLabel').textContent = 'Event starts in';
+  $('countdown').innerHTML = [[d,'days'],[h,'hrs'],[m,'min']].map(([n,l]) => `<div><b>${n}</b><span>${l}</span></div>`).join('');
+}
+
+function renderAbout(){
+  $('aboutHeading').textContent = EVENT.about.lead;
+  $('aboutText').innerHTML = EVENT.about.body.map(p => `<p>${esc(p)}</p>`).join('');
+  $('dirLink').href = mapsUrl();
+  $('supportLink').href = 'mailto:' + EVENT.supportEmail;
+}
+
+/* ---------- Agenda ---------- */
+function personHTML(id){
+  const p = EVENT.speakers[id]; if (!p) return '';
+  return `<button class="person" data-spk="${id}" type="button"><img src="${p.photo}" alt="" loading="lazy"><div><b>${esc(p.name)}</b><span>${esc(p.title)}</span></div></button>`;
+}
+function sessionHTML(s){
+  const people = s.speakers?.length ? `<div class="people-label">${s.speakers.length > 1 ? 'Speakers' : 'Speaker'}</div>${s.speakers.map(personHTML).join('')}` : '';
+  const desc = s.desc ? `<p class="desc">${esc(s.desc)}</p>${s.desc.length > 140 ? '<button class="more" type="button">Read more</button>' : ''}` : '';
+  return `<h3>${esc(s.title)}</h3>${desc}${people}`;
+}
+function renderAgenda(){
+  $('slots').innerHTML = EVENT.agenda.map(s => {
+    const time = `<div class="slot-time">${fmt24(s.start)}<small>– ${fmt24(s.end)}</small></div>`;
+    if (s.type === 'networking' && !s.desc) return `<div class="slot">${time}<div class="session plain"><h3>${esc(s.title)}</h3></div></div>`;
+    return `<div class="slot">${time}<div class="session">${sessionHTML(s)}</div></div>`;
+  }).join('');
+}
+document.addEventListener('click', e => {
+  const more = e.target.closest('.more'); if (more) { const d = more.previousElementSibling; d.classList.toggle('open'); more.textContent = d.classList.contains('open') ? 'Show less' : 'Read more'; }
+  const spk = e.target.closest('[data-spk]'); if (spk) openSpeaker(spk.dataset.spk);
+});
+
+/* ---------- Speakers ---------- */
+function speakerSessions(id){
+  const out = [];
+  EVENT.agenda.forEach(s => {
+    if (s.speakers?.includes(id)) out.push({ t: s.title, when: `${fmt24(s.start)} – ${fmt24(s.end)}` });
+  });
+  return out;
+}
+function renderSpeakers(){
+  $('speakerGrid').innerHTML = Object.entries(EVENT.speakers).map(([id, p]) =>
+    `<button class="speaker" type="button" data-spk="${id}"><div class="ph"><img src="${p.photo}" alt="" loading="lazy"></div><b>${esc(p.name)}</b><span>${esc(p.title)}</span></button>`).join('');
+}
+function openSpeaker(id){
+  const p = EVENT.speakers[id], ss = speakerSessions(id);
+  $('spkModalBody').innerHTML = `<div class="m-head"><img src="${p.photo}" alt=""><div><h3>${esc(p.name)}</h3><p>${esc(p.title)}</p></div></div>
+    <div class="m-body"><div class="people-label">Speaking at</div>${ss.map(s => `<div class="s"><small>${s.when}</small>${esc(s.t)}</div>`).join('') || '<div class="s">Session to be confirmed</div>'}</div>`;
+  $('spkModal').showModal();
+}
+
+/* ---------- Venue ---------- */
+function renderVenue(){
+  $('venueImg').style.backgroundImage = `url("${EVENT.venue.image}")`;
+  $('venueImg').setAttribute('aria-label', EVENT.venue.name);
+  $('venueName').textContent = EVENT.venue.name;
+  $('venueAddr').innerHTML = EVENT.venue.address.map(esc).join('<br>');
+  $('venueDesc').textContent = EVENT.venue.description;
+  $('venueDir').href = mapsUrl();
+}
+
+/* ---------- Registration ---------- */
+const STATUS = {
+  open:      { banner: '', button: 'Register', cta: 'Register now', intro: 'Complete the form to reserve your place. You\'ll receive a confirmation email with everything you need for the day.' },
+  waitlist:  { banner: 'This event has reached capacity. Register below to join the waitlist and we\'ll be in touch if a place becomes available.', button: 'Join the waitlist', cta: 'Join the waitlist', intro: 'Places are currently full, but you can still join the waitlist.' },
+  closed:    { banner: 'Registration for this event is now closed. Please contact event support if you have any questions.', button: 'Registration closed', cta: 'Registration closed', intro: 'Registration for this event has closed.', disable: true },
+  cancelled: { banner: 'This event has been cancelled. Registered guests have been notified by email.', button: 'Event cancelled', cta: 'Event cancelled', intro: 'We\'re sorry — this event has been cancelled.', disable: true }
+};
+function renderRegistration(){
+  const st = STATUS[EVENT.registrationStatus] || STATUS.open;
+  $('regIntro').textContent = st.intro;
+  $('heroCta').textContent = st.cta;
+  $('statusBanner').textContent = st.banner;
+  $('statusBanner').classList.toggle('show', !!st.banner && !$('regForm').hidden);
+  $('submitBtn').textContent = st.button;
+  [...$('regForm').elements].forEach(el => el.disabled = !!st.disable);
+  const s = startD();
+  $('attendText').textContent = `I confirm I plan to attend ${BRAND.name} ${EVENT.title} on ${fmtDate(s, { month: 'long', day: 'numeric' })} in ${EVENT.venue.city}.`;
+  $('disclaimer').innerHTML = BRAND.disclaimers[EVENT.audience] || BRAND.disclaimers.external;
+  $('regSummary').innerHTML = [
+    ['Date', fmtDate(s, { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' })],
+    ['Time', `${fmtTime(s)} – ${fmtTime(endD())} ${EVENT.timezoneLabel}`],
+    ['Venue', EVENT.venue.name],
+    ['Attendance', EVENT.access]
+  ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+  $('footCopy').textContent = `© ${BRAND.legalName} ${s.getFullYear()}. All rights reserved.`;
+  $('footSupport').href = 'mailto:' + EVENT.supportEmail; $('footSupport').textContent = EVENT.supportEmail;
+}
+$('diet').addEventListener('change', e => { $('dietOther').hidden = e.target.value !== 'other'; });
+$('regForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target; let ok = true;
+  ['fn','ln','org','em'].forEach(id => {
+    const el = $(id), bad = !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+    el.closest('.field').classList.toggle('err', bad); if (bad) ok = false;
+  });
+  const att = $('attend'); $('attendField').classList.toggle('err', !att.checked); if (!att.checked) ok = false;
+  if (!ok) { f.querySelector('.err input')?.focus(); return; }
+  // In production this POSTs to MPA, which creates the registration and syncs to Salesforce (if a campaign ID is set)
+  const first = esc($('fn').value.trim()), email = esc($('em').value.trim());
+  const wait = EVENT.registrationStatus === 'waitlist';
+  f.hidden = true; $('statusBanner').classList.remove('show');
+  $('formCard').insertAdjacentHTML('beforeend', `<div class="success"><div class="tick"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h3>${wait ? 'You\'re on the waitlist' : 'You\'re registered'}, ${first}</h3>
+    <p>${wait ? 'We\'ll email' : 'A confirmation is on its way to'} <b>${email}</b>${wait ? ' if a place becomes available.' : '.'}</p>
+    <button class="btn btn-primary" type="button" onclick="downloadICS()">Add to calendar</button>
+    <p style="margin-top:18px;font-size:12px;color:var(--ink-3)">Demo only. Nothing has been submitted.</p></div>`);
+});
+
+/* ---------- Calendar invite ---------- */
+function downloadICS(){
+  const z = d => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const loc = [EVENT.venue.name, ...EVENT.venue.address].join(', ').replace(/,/g, '\\,');
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Market Partner//MPA//EN','BEGIN:VEVENT',
+    `UID:${EVENT.aer}@marketpartner.app`, `DTSTAMP:${z(new Date())}`, `DTSTART:${z(startD())}`, `DTEND:${z(endD())}`,
+    `SUMMARY:${BRAND.name} ${EVENT.title}`, `LOCATION:${loc}`, 'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })), download: `${BRAND.name}-${EVENT.title}`.replace(/\s+/g, '-') + '.ics' });
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+$('icsBtn').addEventListener('click', downloadICS);
+
+/* ---------- Template preview panel ---------- */
+$('tplToggle').onclick = () => $('tpl').classList.toggle('open');
+const bind = (id, key) => { const el = $(id); el.value = EVENT[key]; el.addEventListener('input', () => { EVENT[key] = el.value; renderAll(); }); };
+bind('tTitle', 'title'); bind('tStatus', 'registrationStatus'); bind('tAudience', 'audience'); bind('tBg', 'heroImage');
+
+function renderAll(){ renderHero(); renderFacts(); renderRegistration(); tick(); }
+document.addEventListener('error', e => { if (e.target.tagName === 'IMG' && !e.target.closest('.brand')) e.target.style.visibility = 'hidden'; }, true);
+renderBrand(); renderAll(); renderAbout(); renderAgenda(); renderSpeakers(); renderVenue();
+setInterval(tick, 30000);
+</script>
+</body>
+</html>
