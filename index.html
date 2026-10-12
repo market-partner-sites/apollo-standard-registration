@@ -72,23 +72,23 @@ h2{font-family:var(--font-event);font-size:clamp(34px,4vw,48px);font-weight:400;
 .hero .btn-primary:hover{background:#fff}
 
 /* Key facts strip — overlaps hero */
-.facts{position:relative;z-index:5;margin-top:-72px}
+.facts{position:relative;z-index:5;margin-top:-80px}
 .facts-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(3,1fr)}
-.fact{padding:22px 24px;display:flex;gap:14px;align-items:flex-start;border-left:1px solid var(--border)}
+.fact{padding:26px 28px;display:flex;gap:14px;align-items:flex-start;border-left:1px solid var(--border)}
 .fact:first-child{border-left:0}
-.fact svg{flex:none;color:var(--accent);margin-top:3px}
-.fact-label{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
-.fact-value{font-weight:600;font-size:15px;line-height:1.3;margin-top:2px}
-.fact-sub{font-size:13px;color:var(--ink-2);margin-top:2px}
+.fact svg{flex:none;color:var(--accent);margin-top:3px;width:22px;height:22px}
+.fact-label{font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.fact-value{font-weight:600;font-size:18px;line-height:1.3;margin-top:2px}
+.fact-sub{font-size:15px;color:var(--ink-2);margin-top:2px}
 .countdown{display:flex;gap:16px;margin-top:4px}
-.countdown b{display:block;font-size:22px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
-.countdown span{font-size:11px;color:var(--ink-3)}
+.countdown b{display:block;font-size:26px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.countdown span{font-size:12px;color:var(--ink-3)}
 @media (max-width:760px){.facts-card{grid-template-columns:1fr}.fact{border-left:0}.fact+.fact{border-top:1px solid var(--border)}}
 
 /* ---------- About ---------- */
-.facts-band{background:linear-gradient(to bottom,transparent 72px,#000 72px)}
+.facts-band{background:linear-gradient(to bottom,transparent 80px,#000 80px)}
 .about{background:#000;color:#fff;padding:72px 0 88px}
-.about-text{font-family:var(--font-event);font-weight:400;font-size:clamp(20px,2vw,26px);line-height:1.4;max-width:900px;margin:0;color:#fff}
+.about-text{font-family:var(--font-event);font-weight:400;font-size:clamp(23px,2.3vw,30px);line-height:1.35;max-width:940px;margin:0;color:#fff}
 
 /* ---------- Agenda ---------- */
 .agenda{background:#e3ddd7;padding:80px 0}
@@ -125,25 +125,17 @@ h2{font-family:var(--font-event);font-size:clamp(34px,4vw,48px);font-weight:400;
 @media (max-width:900px){.speaker-grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:600px){.speaker-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* ---------- Venue ---------- */
-.venue{background:var(--hero-ink);color:#fff}
-.venue .wrap{display:grid;grid-template-columns:1.1fr 1fr;min-height:420px}
-.venue-img{background:#1b2a26 center/cover}
-.venue-body{padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
-.venue .eyebrow{color:var(--accent-bright)}
-.venue address{font-style:normal;color:rgba(255,255,255,.8);margin:16px 0 24px;font-size:17px;line-height:1.6}
-.venue p{color:rgba(255,255,255,.7);margin:0 0 28px;max-width:440px}
-@media (max-width:860px){.venue .wrap{grid-template-columns:1fr}.venue-img{min-height:240px}.venue-body{padding:44px 24px}}
 
 /* ---------- Register ---------- */
-.register{padding:88px 0}
+.register{padding:88px 0;background:#000;color:#fff}
+.register .eyebrow{color:var(--accent-bright)}
 .register .container{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start}
-.reg-intro p{color:var(--ink-2)}
-.reg-summary{margin-top:24px;border-top:1px solid var(--border)}
-.reg-summary div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
-.reg-summary dt{color:var(--ink-3)}
+.reg-intro p{color:rgba(255,255,255,.75)}
+.reg-summary{margin-top:24px;border-top:1px solid rgba(255,255,255,.2)}
+.reg-summary div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.2);font-size:14px}
+.reg-summary dt{color:rgba(255,255,255,.6)}
 .reg-summary dd{margin:0;font-weight:600;text-align:right}
-.form-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.form-card{background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
 .field label,.field legend{font-size:13px;font-weight:600}
@@ -170,7 +162,7 @@ fieldset.field{border:0;padding:0;margin:0 0 16px}
 @media (max-width:520px){.grid2{grid-template-columns:1fr;gap:0}.form-card{padding:22px}}
 
 /* ---------- Footer ---------- */
-footer{background:var(--hero-ink);color:rgba(255,255,255,.65);font-size:13px;padding:36px 0}
+footer{background:#000;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);font-size:13px;padding:36px 0}
 footer .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 footer a{color:rgba(255,255,255,.8)}
 
@@ -206,7 +198,6 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
     <nav class="nav-links">
       <a href="#agenda">Agenda</a>
       <a href="#speakers">Speakers</a>
-      <a href="#venue">Venue</a>
       <a class="btn btn-primary" href="#register">Register</a>
     </nav>
   </div>
@@ -262,19 +253,6 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
     <div class="container">
       <h2>Speakers</h2>
       <div class="speaker-grid" id="speakerGrid"></div>
-    </div>
-  </section>
-
-  <section class="venue" id="venue">
-    <div class="wrap">
-      <div class="venue-img" id="venueImg" role="img"></div>
-      <div class="venue-body">
-        <div class="eyebrow">Venue</div>
-        <h2 id="venueName"></h2>
-        <address id="venueAddr"></address>
-        <p id="venueDesc"></p>
-        <div><a class="btn btn-ghost" id="venueDir" target="_blank" rel="noopener">Get directions →</a></div>
-      </div>
     </div>
   </section>
 
@@ -379,7 +357,7 @@ const EVENT = {
   },
   about: {
     // Placeholder copy — replace with the event description from Airtable
-    text: 'Join Apollo’s senior leadership for an intimate Investor Lunch in New York: an afternoon of candid conversation on the themes shaping private markets, from the outlook for private credit to new opportunities across retirement and wealth. Over lunch and a series of short sessions, you’ll hear how our teams are positioning for the year ahead, with plenty of time to connect with fellow investors and the Apollo team.'
+    text: 'Join Apollo’s senior leadership for an intimate Investor Lunch in New York: an afternoon of candid conversation on private credit, retirement and wealth, with plenty of time to connect with fellow investors and the Apollo team.'
   },
 
   // --- Managed in MPA (speakers & agenda) ---
@@ -520,16 +498,6 @@ function openSpeaker(id){
   $('spkModal').showModal();
 }
 
-/* ---------- Venue ---------- */
-function renderVenue(){
-  $('venueImg').style.backgroundImage = `url("${EVENT.venue.image}")`;
-  $('venueImg').setAttribute('aria-label', EVENT.venue.name);
-  $('venueName').textContent = EVENT.venue.name;
-  $('venueAddr').innerHTML = EVENT.venue.address.map(esc).join('<br>');
-  $('venueDesc').textContent = EVENT.venue.description;
-  $('venueDir').href = mapsUrl();
-}
-
 /* ---------- Registration ---------- */
 const STATUS = {
   open:      { banner: '', button: 'Register', cta: 'Register now', intro: 'Complete the form to reserve your place. You\'ll receive a confirmation email with everything you need for the day.' },
@@ -596,7 +564,7 @@ bind('tTitle', 'title'); bind('tStatus', 'registrationStatus'); bind('tAudience'
 
 function renderAll(){ renderHero(); renderFacts(); renderRegistration(); tick(); }
 document.addEventListener('error', e => { if (e.target.tagName === 'IMG' && !e.target.closest('.brand')) e.target.style.visibility = 'hidden'; }, true);
-renderBrand(); renderAll(); renderAbout(); renderAgenda(); renderSpeakers(); renderVenue();
+renderBrand(); renderAll(); renderAbout(); renderAgenda(); renderSpeakers();
 setInterval(tick, 30000);
 </script>
 </body>
