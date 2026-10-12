@@ -187,6 +187,8 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
 .tpl label{display:block;font-weight:600;margin:12px 0 5px}
 .tpl input,.tpl select{width:100%;font:13px var(--font);padding:8px 10px;border:1px solid var(--border);border-radius:6px}
 .tpl .src{font-weight:400;color:var(--ink-3);font-size:11px;margin-left:4px}
+/* Mobile: half the vertical spacing between sections */
+@media (max-width:760px){.about{padding:36px 0 44px}.agenda,.speakers{padding:40px 0}.register{padding:44px 0}}
 @media print{.tpl,.tpl-toggle{display:none}}
 </style>
 </head>
