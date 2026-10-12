@@ -212,7 +212,7 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
       <h1 class="lockup" id="lockup"></h1>
       <p class="hero-lead" id="heroLead"></p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#register" id="heroCta">Register now</a>
+        <a class="btn btn-primary" href="#register" id="heroCta">Register</a>
         <a class="btn btn-ghost" href="#agenda">View the agenda</a>
       </div>
     </div>
@@ -261,8 +261,7 @@ dialog::backdrop{background:rgba(6,17,14,.6)}
   <section class="register" id="register">
     <div class="container">
       <div class="reg-intro">
-        <div class="eyebrow">Registration</div>
-        <h2 id="regTitle">Reserve your place</h2>
+        <h2 id="regTitle">Register now</h2>
         <p id="regIntro"></p>
         <dl class="reg-summary" id="regSummary"></dl>
       </div>
@@ -502,7 +501,7 @@ function openSpeaker(id){
 
 /* ---------- Registration ---------- */
 const STATUS = {
-  open:      { banner: '', button: 'Register', cta: 'Register now', intro: 'Complete the form to reserve your place. You\'ll receive a confirmation email with everything you need for the day.' },
+  open:      { banner: '', button: 'Register', cta: 'Register', intro: 'Complete the form to reserve your place. You\'ll receive a confirmation email with everything you need for the day.' },
   waitlist:  { banner: 'This event has reached capacity. Register below to join the waitlist and we\'ll be in touch if a place becomes available.', button: 'Join the waitlist', cta: 'Join the waitlist', intro: 'Places are currently full, but you can still join the waitlist.' },
   closed:    { banner: 'Registration for this event is now closed. Please contact event support if you have any questions.', button: 'Registration closed', cta: 'Registration closed', intro: 'Registration for this event has closed.', disable: true },
   cancelled: { banner: 'This event has been cancelled. Registered guests have been notified by email.', button: 'Event cancelled', cta: 'Event cancelled', intro: 'We\'re sorry — this event has been cancelled.', disable: true }
